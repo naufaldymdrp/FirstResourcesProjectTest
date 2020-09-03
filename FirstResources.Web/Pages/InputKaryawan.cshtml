@@ -1,87 +1,100 @@
 ﻿@page
 @model FirstResources.Web.Pages.InputKaryawanModel
 
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 @{
-    ViewData["Title"] = "InputKaryawan";
+    ViewData["Title"] = "Input Karyawan";
 }
 
 <h1>Input Karyawan</h1>
 <hr />
 
-<div class="row">
-    <div class="col-md">
-        <form method="post">
-            <div class="row">
-                <div class="col-md-4">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="DataKaryawan.NIK" class="control-label"></label>
-                        <input asp-for="DataKaryawan.NIK" class="form-control" />
-                        <span asp-validation-for="DataKaryawan.NIK" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DataKaryawan.Nama" class="control-label"></label>
-                        <input asp-for="DataKaryawan.Nama" class="form-control" />
-                        <span asp-validation-for="DataKaryawan.Nama" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DataKaryawan.Alamat" class="control-label"></label>
-                        <input asp-for="DataKaryawan.Alamat" class="form-control" />
-                        <span asp-validation-for="DataKaryawan.Alamat" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DataKaryawan.TanggalLahir" class="control-label"></label>
-                        <input asp-for="DataKaryawan.TanggalLahir" class="form-control" />
-                        <span asp-validation-for="DataKaryawan.TanggalLahir" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <!-- Pilihan Jenis Kelamin -->
-                    <div class="form-group">
-                        <label asp-for="DataKaryawan.JenisKelaminId" class="control-label"></label>
-                        <div>
-                        @foreach (var jenisKelamin in Model.PilihanJenisKelamin)
-                        {
-                            <input type="radio" asp-for="DataKaryawan.JenisKelaminId" value="@jenisKelamin.JenisKelaminId"/>
-                            @jenisKelamin.NamaJenisKelamin
-                        }                        
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="row">
+        <div class="col-md">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="DataKaryawan.NIK" class="control-label"></label>
+                            <input asp-for="DataKaryawan.NIK" class="form-control" />
+                            <span asp-validation-for="DataKaryawan.NIK" class="text-danger"></span>
                         </div>
-                        <span asp-validation-for="DataKaryawan.JenisKelaminId" class="text-danger"></span>
+                        <div class="form-group">
+                            <label asp-for="DataKaryawan.Nama" class="control-label"></label>
+                            <input asp-for="DataKaryawan.Nama" class="form-control" />
+                            <span asp-validation-for="DataKaryawan.Nama" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DataKaryawan.Alamat" class="control-label"></label>
+                            <input asp-for="DataKaryawan.Alamat" class="form-control" />
+                            <span asp-validation-for="DataKaryawan.Alamat" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DataKaryawan.TanggalLahir" class="control-label"></label>
+                            <input asp-for="DataKaryawan.TanggalLahir" class="form-control" />
+                            <span asp-validation-for="DataKaryawan.TanggalLahir" class="text-danger"></span>
+                        </div>
                     </div>
-                    <!-- Pilihan Agama -->
-                    <div class="form-group">
-                        <label asp-for="DataKaryawan.AgamaId" class="control-label"></label>
-                        <select asp-for="DataKaryawan.AgamaId" asp-items="Model.PilihanAgama" class="form-control"></select>
-                        <span asp-validation-for="DataKaryawan.AgamaId" class="text-danger"></span>
-                    </div>
-                    <!-- Pilihan Departemen -->
-                    <div class="form-group">
-                        <label asp-for="DataKaryawan.DepartemenId" class="control-label"></label>
-                        <select asp-for="DataKaryawan.DepartemenId" asp-items="Model.PilihanDepartemen" class="form-control"></select>
-                        <span asp-validation-for="DataKaryawan.DepartemenId" class="text-danger"></span>
-                    </div>
-                    <!-- Pilihan Jabatan -->
-                    <div class="form-group">
-                        <label asp-for="DataKaryawan.JabatanId" class="control-label"></label>
-                        <select asp-for="DataKaryawan.JabatanId" asp-items="Model.PilihanJabatan" class="form-control"></select>
-                        <span asp-validation-for="DataKaryawan.JabatanId" class="text-danger"></span>
+                    <div class="col-md-4">
+                        <!-- Pilihan Jenis Kelamin -->
+                        <div class="form-group">
+                            <label asp-for="DataKaryawan.JenisKelaminId" class="control-label"></label>
+                            <div>
+                                @foreach (var jenisKelamin in Model.PilihanJenisKelamin)
+                                {
+                                    <input type="radio" asp-for="DataKaryawan.JenisKelaminId" value="@jenisKelamin.JenisKelaminId" />
+                                    @jenisKelamin.NamaJenisKelamin
+                                }
+                            </div>
+                            <span asp-validation-for="DataKaryawan.JenisKelaminId" class="text-danger"></span>
+                        </div>
+                        <!-- Pilihan Agama -->
+                        <div class="form-group">
+                            <label asp-for="DataKaryawan.AgamaId" class="control-label"></label>
+                            <select asp-for="DataKaryawan.AgamaId" asp-items="Model.PilihanAgama" class="form-control"></select>
+                            <span asp-validation-for="DataKaryawan.AgamaId" class="text-danger"></span>
+                        </div>
+                        <!-- Pilihan Departemen -->
+                        <div class="form-group">
+                            <label asp-for="DataKaryawan.DepartemenId" class="control-label"></label>
+                            <select asp-for="DataKaryawan.DepartemenId" asp-items="Model.PilihanDepartemen" class="form-control"></select>
+                            <span asp-validation-for="DataKaryawan.DepartemenId" class="text-danger"></span>
+                        </div>
+                        <!-- Pilihan Jabatan -->
+                        <div class="form-group">
+                            <label asp-for="DataKaryawan.JabatanId" class="control-label"></label>
+                            <select asp-for="DataKaryawan.JabatanId" asp-items="Model.PilihanJabatan" class="form-control"></select>
+                            <span asp-validation-for="DataKaryawan.JabatanId" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-page="/TabelKaryawan">Back to List</a>
-</div>
+    <div>
+        <a asp-page="/TabelKaryawan">Kembali ke Tabel Karyawan</a>
+    </div>
+}
+else
+{
+    <h4 class="text-danger">
+        Anda harus login terlebih dahulu untuk melakukan input data karyawan
+    </h4>
+}
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

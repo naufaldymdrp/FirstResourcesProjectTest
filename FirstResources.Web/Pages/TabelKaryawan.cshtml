@@ -1,72 +1,86 @@
 ﻿@page
 @model FirstResources.Web.Pages.TabelKaryawanModel
 
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 @{
-    ViewData["Title"] = "TabelKaryawan";
+    ViewData["Title"] = "Tabel Karyawan";
 }
 
 <h1>Tabel Karyawan</h1>
 
-<p>
-    <a asp-page="/InputKaryawan">Tambahkan Data Karyawan</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DataKaryawan[0].NIK)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataKaryawan[0].Nama)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataKaryawan[0].Alamat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataKaryawan[0].TanggalLahir)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataKaryawan[0].JenisKelamin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataKaryawan[0].Departemen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataKaryawan[0].Jabatan)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.DataKaryawan) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NIK)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nama)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Alamat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TanggalLahir)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.JenisKelamin.NamaJenisKelamin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Departemen.Nama)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Jabatan.Nama)
-            </td>
-            <td>
-                <a asp-page="./_EditKaryawan" asp-route-id="@item.DataKaryawanId">Edit</a> |
-                @*<a asp-page="./Details" asp-route-id="@item.DataKaryawanId">Details</a> |*@
-                <a asp-page="./_HapusKaryawan" asp-route-id="@item.DataKaryawanId">Delete</a>
-            </td>
-        </tr>
+@if (SignInManager.IsSignedIn(User))
+{
+    <p>
+        <a asp-page="/InputKaryawan">Tambahkan Data Karyawan</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataKaryawan[0].NIK)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataKaryawan[0].Nama)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataKaryawan[0].Alamat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataKaryawan[0].TanggalLahir)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataKaryawan[0].JenisKelamin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataKaryawan[0].Departemen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataKaryawan[0].Jabatan)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.DataKaryawan)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NIK)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nama)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Alamat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TanggalLahir)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JenisKelamin.NamaJenisKelamin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Departemen.Nama)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Jabatan.Nama)
+                    </td>
+                    <td>
+                        <a asp-page="./_EditKaryawan" asp-route-id="@item.DataKaryawanId">Edit</a> |
+                        @*<a asp-page="./Details" asp-route-id="@item.DataKaryawanId">Details</a> |*@
+                        <a asp-page="./_HapusKaryawan" asp-route-id="@item.DataKaryawanId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
-    </tbody>
-</table>
+else 
+{
+    <h4 class="text-danger">
+        Anda harus Login terlebih dahulu untuk melihat tabel
+    </h4>    
+} 
