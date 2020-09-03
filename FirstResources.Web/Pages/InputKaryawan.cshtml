@@ -1,0 +1,49 @@
+﻿@page
+@model FirstResources.Web.Pages.InputKaryawanModel
+
+@{
+    ViewData["Title"] = "InputKaryawan";
+}
+
+<h1>Input Karyawan</h1>
+
+@*<h4>Data Karyawan</h4>*@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DataKaryawan.NIK" class="control-label"></label>
+                <input asp-for="DataKaryawan.NIK" class="form-control" />
+                <span asp-validation-for="DataKaryawan.NIK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataKaryawan.Nama" class="control-label"></label>
+                <input asp-for="DataKaryawan.Nama" class="form-control" />
+                <span asp-validation-for="DataKaryawan.Nama" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataKaryawan.Alamat" class="control-label"></label>
+                <input asp-for="DataKaryawan.Alamat" class="form-control" />
+                <span asp-validation-for="DataKaryawan.Alamat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataKaryawan.TanggalLahir" class="control-label"></label>
+                <input asp-for="DataKaryawan.TanggalLahir" class="form-control" />
+                <span asp-validation-for="DataKaryawan.TanggalLahir" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/TabelKaryawan">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

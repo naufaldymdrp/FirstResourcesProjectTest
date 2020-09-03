@@ -11,9 +11,7 @@ namespace FirstResources.Web.Data.Business
         [Key]
         public int DepartemenId { get; set; }
         public string Nama { get; set; }
-
-        // foreign key
-        public int DataKaryawanId { get; set; }
+        
         // inverse navigation
         public DataKaryawan DataKaryawan { get; set; }
     }

@@ -1,0 +1,54 @@
+﻿@page
+@model FirstResources.Web.Pages.TabelKaryawanModel
+
+@{
+    ViewData["Title"] = "TabelKaryawan";
+}
+
+<h1>TabelKaryawan</h1>
+
+<p>
+    <a asp-page="/InputKaryawan">Tambahkan Karyawan Baru</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DataKaryawan[0].NIK)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataKaryawan[0].Nama)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataKaryawan[0].Alamat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataKaryawan[0].TanggalLahir)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.DataKaryawan) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NIK)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nama)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alamat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TanggalLahir)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.DataKaryawanId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.DataKaryawanId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.DataKaryawanId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
