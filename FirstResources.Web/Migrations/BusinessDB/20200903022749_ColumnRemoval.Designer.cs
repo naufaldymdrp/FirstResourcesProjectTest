@@ -3,15 +3,17 @@ using System;
 using FirstResources.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace FirstResources.Web.Migrations.BusinessDB
 {
     [DbContext(typeof(BusinessDBContext))]
-    partial class BusinessDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200903022749_ColumnRemoval")]
+    partial class ColumnRemoval
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,10 +28,15 @@ namespace FirstResources.Web.Migrations.BusinessDB
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int?>("DataKaryawanId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("NamaAgama")
                         .HasColumnType("text");
 
                     b.HasKey("AgamaId");
+
+                    b.HasIndex("DataKaryawanId");
 
                     b.ToTable("Agama");
                 });
@@ -41,20 +48,8 @@ namespace FirstResources.Web.Migrations.BusinessDB
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("AgamaId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Alamat")
                         .HasColumnType("text");
-
-                    b.Property<int?>("DepartemenId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("JabatanId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("JenisKelaminId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("NIK")
                         .HasColumnType("text");
@@ -67,14 +62,6 @@ namespace FirstResources.Web.Migrations.BusinessDB
 
                     b.HasKey("DataKaryawanId");
 
-                    b.HasIndex("AgamaId");
-
-                    b.HasIndex("DepartemenId");
-
-                    b.HasIndex("JabatanId");
-
-                    b.HasIndex("JenisKelaminId");
-
                     b.ToTable("DataKaryawan");
                 });
 
@@ -85,10 +72,15 @@ namespace FirstResources.Web.Migrations.BusinessDB
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int?>("DataKaryawanId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Nama")
                         .HasColumnType("text");
 
                     b.HasKey("DepartemenId");
+
+                    b.HasIndex("DataKaryawanId");
 
                     b.ToTable("Departemen");
                 });
@@ -100,10 +92,15 @@ namespace FirstResources.Web.Migrations.BusinessDB
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int?>("DataKaryawanId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Nama")
                         .HasColumnType("text");
 
                     b.HasKey("JabatanId");
+
+                    b.HasIndex("DataKaryawanId");
 
                     b.ToTable("Jabatan");
                 });
@@ -115,31 +112,45 @@ namespace FirstResources.Web.Migrations.BusinessDB
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int?>("DataKaryawanId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("NamaJenisKelamin")
                         .HasColumnType("text");
 
                     b.HasKey("JenisKelaminId");
 
+                    b.HasIndex("DataKaryawanId");
+
                     b.ToTable("JenisKelamin");
                 });
 
-            modelBuilder.Entity("FirstResources.Web.Data.Business.DataKaryawan", b =>
+            modelBuilder.Entity("FirstResources.Web.Data.Business.Agama", b =>
                 {
-                    b.HasOne("FirstResources.Web.Data.Business.Agama", "Agama")
-                        .WithMany("DataKaryawan")
-                        .HasForeignKey("AgamaId");
+                    b.HasOne("FirstResources.Web.Data.Business.DataKaryawan", "DataKaryawan")
+                        .WithMany("Agama")
+                        .HasForeignKey("DataKaryawanId");
+                });
 
-                    b.HasOne("FirstResources.Web.Data.Business.Departemen", "Departemen")
-                        .WithMany("DataKaryawan")
-                        .HasForeignKey("DepartemenId");
+            modelBuilder.Entity("FirstResources.Web.Data.Business.Departemen", b =>
+                {
+                    b.HasOne("FirstResources.Web.Data.Business.DataKaryawan", "DataKaryawan")
+                        .WithMany("Departemen")
+                        .HasForeignKey("DataKaryawanId");
+                });
 
-                    b.HasOne("FirstResources.Web.Data.Business.Jabatan", "Jabatan")
-                        .WithMany("DataKaryawan")
-                        .HasForeignKey("JabatanId");
+            modelBuilder.Entity("FirstResources.Web.Data.Business.Jabatan", b =>
+                {
+                    b.HasOne("FirstResources.Web.Data.Business.DataKaryawan", "DataKaryawan")
+                        .WithMany("Jabatan")
+                        .HasForeignKey("DataKaryawanId");
+                });
 
-                    b.HasOne("FirstResources.Web.Data.Business.JenisKelamin", "JenisKelamin")
-                        .WithMany("DataKaryawan")
-                        .HasForeignKey("JenisKelaminId");
+            modelBuilder.Entity("FirstResources.Web.Data.Business.JenisKelamin", b =>
+                {
+                    b.HasOne("FirstResources.Web.Data.Business.DataKaryawan", "DataKaryawan")
+                        .WithMany("JenisKelamin")
+                        .HasForeignKey("DataKaryawanId");
                 });
 #pragma warning restore 612, 618
         }

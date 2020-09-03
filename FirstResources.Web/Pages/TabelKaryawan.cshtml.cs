@@ -12,9 +12,9 @@ namespace FirstResources.Web.Pages
 {
     public class TabelKaryawanModel : PageModel
     {
-        private readonly BusinessDBContext _context;
+        private readonly FirstResources.Web.Data.BusinessDBContext _context;
 
-        public TabelKaryawanModel(BusinessDBContext context)
+        public TabelKaryawanModel(FirstResources.Web.Data.BusinessDBContext context)
         {
             _context = context;
         }

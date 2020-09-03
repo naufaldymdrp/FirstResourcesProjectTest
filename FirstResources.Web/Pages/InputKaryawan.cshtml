@@ -6,35 +6,68 @@
 }
 
 <h1>Input Karyawan</h1>
-
-@*<h4>Data Karyawan</h4>*@
 <hr />
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md">
         <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="DataKaryawan.NIK" class="control-label"></label>
-                <input asp-for="DataKaryawan.NIK" class="form-control" />
-                <span asp-validation-for="DataKaryawan.NIK" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="DataKaryawan.NIK" class="control-label"></label>
+                        <input asp-for="DataKaryawan.NIK" class="form-control" />
+                        <span asp-validation-for="DataKaryawan.NIK" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DataKaryawan.Nama" class="control-label"></label>
+                        <input asp-for="DataKaryawan.Nama" class="form-control" />
+                        <span asp-validation-for="DataKaryawan.Nama" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DataKaryawan.Alamat" class="control-label"></label>
+                        <input asp-for="DataKaryawan.Alamat" class="form-control" />
+                        <span asp-validation-for="DataKaryawan.Alamat" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DataKaryawan.TanggalLahir" class="control-label"></label>
+                        <input asp-for="DataKaryawan.TanggalLahir" class="form-control" />
+                        <span asp-validation-for="DataKaryawan.TanggalLahir" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- Pilihan Jenis Kelamin -->
+                    <div class="form-group">
+                        <label asp-for="DataKaryawan.JenisKelamin" class="control-label"></label>
+                        <select asp-for="DataKaryawan.JenisKelamin" asp-items="Model.PilihanJenisKelamin" class="form-control"></select>
+                        <span asp-validation-for="DataKaryawan.JenisKelamin" class="text-danger"></span>
+                    </div>
+                    <!-- Pilihan Agama -->
+                    <div class="form-group">
+                        <label asp-for="DataKaryawan.Agama" class="control-label"></label>
+                        <select asp-for="DataKaryawan.Agama" asp-items="Model.PilihanAgama" class="form-control"></select>
+                        <span asp-validation-for="DataKaryawan.Agama" class="text-danger"></span>
+                    </div>
+                    <!-- Pilihan Departemen -->
+                    <div class="form-group">
+                        <label asp-for="DataKaryawan.Departemen" class="control-label"></label>
+                        <select asp-for="DataKaryawan.Departemen" asp-items="Model.PilihanDepartemen" class="form-control"></select>
+                        <span asp-validation-for="DataKaryawan.Departemen" class="text-danger"></span>
+                    </div>
+                    <!-- Pilihan Jabatan -->
+                    <div class="form-group">
+                        <label asp-for="DataKaryawan.Jabatan" class="control-label"></label>
+                        <select asp-for="DataKaryawan.Jabatan" asp-items="Model.PilihanJabatan" class="form-control"></select>
+                        <span asp-validation-for="DataKaryawan.Jabatan" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="DataKaryawan.Nama" class="control-label"></label>
-                <input asp-for="DataKaryawan.Nama" class="form-control" />
-                <span asp-validation-for="DataKaryawan.Nama" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataKaryawan.Alamat" class="control-label"></label>
-                <input asp-for="DataKaryawan.Alamat" class="form-control" />
-                <span asp-validation-for="DataKaryawan.Alamat" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataKaryawan.TanggalLahir" class="control-label"></label>
-                <input asp-for="DataKaryawan.TanggalLahir" class="form-control" />
-                <span asp-validation-for="DataKaryawan.TanggalLahir" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
             </div>
         </form>
     </div>

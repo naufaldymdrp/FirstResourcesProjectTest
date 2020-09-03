@@ -11,8 +11,7 @@ namespace FirstResources.Web.Data.Business
         [Key]
         public int JenisKelaminId { get; set; }
         public string NamaJenisKelamin { get; set; }
-        
-        // inverse navigation
-        public DataKaryawan DataKaryawan { get; set; }
+                
+        public List<DataKaryawan> DataKaryawan { get; set; }
     }
 }

@@ -12,7 +12,6 @@ namespace FirstResources.Web.Data.Business
         public int AgamaId { get; set; }
         public string NamaAgama { get; set; }
        
-        // inverse navigation
-        public DataKaryawan DataKaryawan { get; set; }
+        public List<DataKaryawan> DataKaryawan { get; set; }
     }
 }
