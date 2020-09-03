@@ -3,15 +3,17 @@ using System;
 using FirstResources.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace FirstResources.Web.Migrations.BusinessDB
 {
     [DbContext(typeof(BusinessDBContext))]
-    partial class BusinessDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200903044802_PerubahanKolom_DataKaryawan2")]
+    partial class PerubahanKolom_DataKaryawan2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

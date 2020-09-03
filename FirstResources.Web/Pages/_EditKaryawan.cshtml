@@ -1,19 +1,15 @@
 ﻿@page
-@model FirstResources.Web.Pages.InputKaryawanModel
+@model FirstResources.Web.Pages._EditKaryawanModel
 
-@{
-    ViewData["Title"] = "InputKaryawan";
-}
-
-<h1>Input Karyawan</h1>
+<h4>DataKaryawan</h4>
 <hr />
-
 <div class="row">
     <div class="col-md">
         <form method="post">
             <div class="row">
                 <div class="col-md-4">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="DataKaryawan.DataKaryawanId" />
                     <div class="form-group">
                         <label asp-for="DataKaryawan.NIK" class="control-label"></label>
                         <input asp-for="DataKaryawan.NIK" class="form-control" />
@@ -40,11 +36,11 @@
                     <div class="form-group">
                         <label asp-for="DataKaryawan.JenisKelamin" class="control-label"></label>
                         <div>
-                        @foreach (var jenisKelamin in Model.PilihanJenisKelamin)
-                        {
-                            <input type="radio" asp-for="DataKaryawan.JenisKelamin" value="@jenisKelamin.JenisKelaminId"/>
-                            @jenisKelamin.NamaJenisKelamin
-                        }                        
+                            @foreach (var jenisKelamin in Model.PilihanJenisKelamin)
+                            {
+                                <input type="radio" asp-for="DataKaryawan.JenisKelamin" value="@jenisKelamin.JenisKelaminId" />
+                                @jenisKelamin.NamaJenisKelamin
+                            }
                         </div>
                         <span asp-validation-for="DataKaryawan.JenisKelamin" class="text-danger"></span>
                     </div>
@@ -71,16 +67,16 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <input type="submit" value="Save" class="btn btn-primary" />
                     </div>
                 </div>
-            </div>
+            </div>                        
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="/TabelKaryawan">Back to List</a>
+    <a asp-page="./TabelKaryawan">Kembali ke Tabel Karyawan</a>
 </div>
 
 @section Scripts {

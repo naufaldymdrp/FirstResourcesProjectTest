@@ -5,16 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using FirstResources.Web.Data;
 using FirstResources.Web.Data.Business;
 
 namespace FirstResources.Web.Pages
 {
-    public class InputKaryawanModel : PageModel
+    public class _EditKaryawanModel : PageModel
     {
         private readonly FirstResources.Web.Data.BusinessDBContext _context;
 
-        public InputKaryawanModel(FirstResources.Web.Data.BusinessDBContext context)
+        public _EditKaryawanModel(FirstResources.Web.Data.BusinessDBContext context)
         {
             _context = context;
         }
@@ -59,11 +60,28 @@ namespace FirstResources.Web.Pages
                     Value = jabatan.JabatanId.ToString(),
                     Text = jabatan.Nama
                 })
-                .ToList();        
+                .ToList();
 
-        public IActionResult OnGet()
-        {          
+        public async Task<IActionResult> OnGetAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            DataKaryawan = await _context.
+                DataKaryawan
+                .Include(item => item.JenisKelamin)
+                .Include(item => item.Agama)
+                .Include(item => item.Departemen)
+                .Include(item => item.Jabatan)
+                .Where(m => m.DataKaryawanId == id)
+                .FirstOrDefaultAsync();
+
+            if (DataKaryawan == null)
+            {
+                return NotFound();
+            }
             return Page();
         }
 
@@ -76,10 +94,30 @@ namespace FirstResources.Web.Pages
                 return Page();
             }
 
-            _context.DataKaryawan.Add(DataKaryawan);
-            await _context.SaveChangesAsync();
+            _context.Attach(DataKaryawan).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!DataKaryawanExists(DataKaryawan.DataKaryawanId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return RedirectToPage("./TabelKaryawan");
+        }
+
+        private bool DataKaryawanExists(int id)
+        {
+            return _context.DataKaryawan.Any(e => e.DataKaryawanId == id);
         }
     }
 }
