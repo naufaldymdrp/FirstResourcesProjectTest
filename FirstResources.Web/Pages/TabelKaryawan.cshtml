@@ -25,6 +25,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.DataKaryawan[0].TanggalLahir)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataKaryawan[0].JenisKelamin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataKaryawan[0].Departemen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataKaryawan[0].Jabatan)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -41,7 +50,16 @@
                 @Html.DisplayFor(modelItem => item.Alamat)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TanggalLahir, "{0:dd-MM-yyyy}")
+                @Html.DisplayFor(modelItem => item.TanggalLahir)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JenisKelamin.NamaJenisKelamin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departemen.Nama)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Jabatan.Nama)
             </td>
             <td>
                 <a asp-page="./_EditKaryawan" asp-route-id="@item.DataKaryawanId">Edit</a> |

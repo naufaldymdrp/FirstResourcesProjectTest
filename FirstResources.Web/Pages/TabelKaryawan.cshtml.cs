@@ -23,7 +23,12 @@ namespace FirstResources.Web.Pages
 
         public async Task OnGetAsync()
         {
-            DataKaryawan = await _context.DataKaryawan.ToListAsync();
+            DataKaryawan = await _context
+                .DataKaryawan
+                .Include(m => m.JenisKelamin)
+                .Include(m => m.Departemen)
+                .Include(m => m.Jabatan)
+                .ToListAsync();
         }
     }
 }
