@@ -38,33 +38,33 @@
                 <div class="col-md-4">
                     <!-- Pilihan Jenis Kelamin -->
                     <div class="form-group">
-                        <label asp-for="DataKaryawan.JenisKelamin" class="control-label"></label>
+                        <label asp-for="DataKaryawan.JenisKelaminId" class="control-label"></label>
                         <div>
                         @foreach (var jenisKelamin in Model.PilihanJenisKelamin)
                         {
-                            <input type="radio" asp-for="DataKaryawan.JenisKelamin" value="@jenisKelamin.JenisKelaminId"/>
+                            <input type="radio" asp-for="DataKaryawan.JenisKelaminId" value="@jenisKelamin.JenisKelaminId"/>
                             @jenisKelamin.NamaJenisKelamin
                         }                        
                         </div>
-                        <span asp-validation-for="DataKaryawan.JenisKelamin" class="text-danger"></span>
+                        <span asp-validation-for="DataKaryawan.JenisKelaminId" class="text-danger"></span>
                     </div>
                     <!-- Pilihan Agama -->
                     <div class="form-group">
-                        <label asp-for="DataKaryawan.Agama" class="control-label"></label>
-                        <select asp-for="DataKaryawan.Agama" asp-items="Model.PilihanAgama" class="form-control"></select>
-                        <span asp-validation-for="DataKaryawan.Agama" class="text-danger"></span>
+                        <label asp-for="DataKaryawan.AgamaId" class="control-label"></label>
+                        <select asp-for="DataKaryawan.AgamaId" asp-items="Model.PilihanAgama" class="form-control"></select>
+                        <span asp-validation-for="DataKaryawan.AgamaId" class="text-danger"></span>
                     </div>
                     <!-- Pilihan Departemen -->
                     <div class="form-group">
-                        <label asp-for="DataKaryawan.Departemen" class="control-label"></label>
-                        <select asp-for="DataKaryawan.Departemen" asp-items="Model.PilihanDepartemen" class="form-control"></select>
-                        <span asp-validation-for="DataKaryawan.Departemen" class="text-danger"></span>
+                        <label asp-for="DataKaryawan.DepartemenId" class="control-label"></label>
+                        <select asp-for="DataKaryawan.DepartemenId" asp-items="Model.PilihanDepartemen" class="form-control"></select>
+                        <span asp-validation-for="DataKaryawan.DepartemenId" class="text-danger"></span>
                     </div>
                     <!-- Pilihan Jabatan -->
                     <div class="form-group">
-                        <label asp-for="DataKaryawan.Jabatan" class="control-label"></label>
-                        <select asp-for="DataKaryawan.Jabatan" asp-items="Model.PilihanJabatan" class="form-control"></select>
-                        <span asp-validation-for="DataKaryawan.Jabatan" class="text-danger"></span>
+                        <label asp-for="DataKaryawan.JabatanId" class="control-label"></label>
+                        <select asp-for="DataKaryawan.JabatanId" asp-items="Model.PilihanJabatan" class="form-control"></select>
+                        <span asp-validation-for="DataKaryawan.JabatanId" class="text-danger"></span>
                     </div>
                 </div>
             </div>

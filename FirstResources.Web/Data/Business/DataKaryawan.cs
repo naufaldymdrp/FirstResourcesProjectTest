@@ -16,14 +16,23 @@ namespace FirstResources.Web.Data.Business
         [Display(Name = "Tanggal Lahir")]
         public DateTime TanggalLahir { get; set; }
 
-        // inverse navigation and shadow property (foreign key)
-        [ForeignKey("AgamaId")]
-        public Agama Agama { get; set; }
-        [ForeignKey("JenisKelaminId")]
-        public JenisKelamin JenisKelamin { get; set; }
-        [ForeignKey("DepartemenId")]
-        public Departemen Departemen { get; set; }
-        [ForeignKey("JabatanId")]
+        // inverse navigation and foreign key dibuat 
+        // tidak boleh null dan eksplisit 
+        [Display(Name = "Agama")]
+        public int AgamaId { get; set; }
+        public Agama Agama { get; set; }      
+        
+        [Display(Name = "Jenis Kelamin")]
+        public int JenisKelaminId { get; set; }
+        [Display(Name = "Jenis Kelamin")]
+        public JenisKelamin JenisKelamin { get; set; }   
+        
+        [Display(Name = "Departemen")]
+        public int DepartemenId { get; set; }
+        public Departemen Departemen { get; set; }        
+
+        [Display(Name = "Jabatan")]
+        public int JabatanId { get; set; }
         public Jabatan Jabatan { get; set; }
     }
 }

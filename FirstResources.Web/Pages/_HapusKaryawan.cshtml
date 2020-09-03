@@ -1,0 +1,64 @@
+﻿@page
+@model FirstResources.Web.Pages._HapusKaryawanModel
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DataKaryawan</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataKaryawan.NIK)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataKaryawan.NIK)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataKaryawan.Nama)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataKaryawan.Nama)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataKaryawan.Alamat)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataKaryawan.Alamat)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataKaryawan.TanggalLahir)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataKaryawan.TanggalLahir)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataKaryawan.Agama)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataKaryawan.Agama.AgamaId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataKaryawan.JenisKelamin)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataKaryawan.JenisKelamin.JenisKelaminId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataKaryawan.Departemen)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataKaryawan.Departemen.DepartemenId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataKaryawan.Jabatan)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataKaryawan.Jabatan.JabatanId)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="DataKaryawan.DataKaryawanId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./TabelKaryawan">Kembali Ke Tabel</a>
+    </form>
+</div>

@@ -76,6 +76,8 @@ namespace FirstResources.Web.Pages
                 return Page();
             }
 
+            
+
             _context.DataKaryawan.Add(DataKaryawan);
             await _context.SaveChangesAsync();
 

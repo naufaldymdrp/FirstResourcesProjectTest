@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FirstResources.Web.Data;
 using FirstResources.Web.Data.Business;
+using Microsoft.Extensions.Logging;
 
 namespace FirstResources.Web.Pages
 {
@@ -15,9 +16,12 @@ namespace FirstResources.Web.Pages
     {
         private readonly FirstResources.Web.Data.BusinessDBContext _context;
 
-        public _EditKaryawanModel(FirstResources.Web.Data.BusinessDBContext context)
+        private readonly ILogger _logger;
+
+        public _EditKaryawanModel(FirstResources.Web.Data.BusinessDBContext context, ILogger<_EditKaryawanModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [BindProperty]
@@ -69,14 +73,13 @@ namespace FirstResources.Web.Pages
                 return NotFound();
             }
 
-            DataKaryawan = await _context.
-                DataKaryawan
-                .Include(item => item.JenisKelamin)
-                .Include(item => item.Agama)
-                .Include(item => item.Departemen)
-                .Include(item => item.Jabatan)
-                .Where(m => m.DataKaryawanId == id)
-                .FirstOrDefaultAsync();
+            DataKaryawan = await _context
+                .DataKaryawan
+                .Include(m => m.JenisKelamin)                
+                .FirstOrDefaultAsync(m => m.DataKaryawanId == id);
+            
+
+            _logger.LogInformation($"{DataKaryawan.JenisKelamin.NamaJenisKelamin}");
 
             if (DataKaryawan == null)
             {

@@ -41,12 +41,12 @@
                 @Html.DisplayFor(modelItem => item.Alamat)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TanggalLahir)
+                @Html.DisplayFor(modelItem => item.TanggalLahir, "{0:dd-MM-yyyy}")
             </td>
             <td>
                 <a asp-page="./_EditKaryawan" asp-route-id="@item.DataKaryawanId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.DataKaryawanId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.DataKaryawanId">Delete</a>
+                @*<a asp-page="./Details" asp-route-id="@item.DataKaryawanId">Details</a> |*@
+                <a asp-page="./_HapusKaryawan" asp-route-id="@item.DataKaryawanId">Delete</a>
             </td>
         </tr>
 }

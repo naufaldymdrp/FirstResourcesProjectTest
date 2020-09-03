@@ -3,15 +3,17 @@ using System;
 using FirstResources.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace FirstResources.Web.Migrations.BusinessDB
 {
     [DbContext(typeof(BusinessDBContext))]
-    partial class BusinessDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200903070802_PenambahanAtributeForeignKey")]
+    partial class PenambahanAtributeForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,19 +43,19 @@ namespace FirstResources.Web.Migrations.BusinessDB
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("AgamaId")
+                    b.Property<int?>("AgamaId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Alamat")
                         .HasColumnType("text");
 
-                    b.Property<int>("DepartemenId")
+                    b.Property<int?>("DepartemenId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("JabatanId")
+                    b.Property<int?>("JabatanId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("JenisKelaminId")
+                    b.Property<int?>("JenisKelaminId")
                         .HasColumnType("integer");
 
                     b.Property<string>("NIK")
@@ -127,27 +129,19 @@ namespace FirstResources.Web.Migrations.BusinessDB
                 {
                     b.HasOne("FirstResources.Web.Data.Business.Agama", "Agama")
                         .WithMany("DataKaryawan")
-                        .HasForeignKey("AgamaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AgamaId");
 
                     b.HasOne("FirstResources.Web.Data.Business.Departemen", "Departemen")
                         .WithMany("DataKaryawan")
-                        .HasForeignKey("DepartemenId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DepartemenId");
 
                     b.HasOne("FirstResources.Web.Data.Business.Jabatan", "Jabatan")
                         .WithMany("DataKaryawan")
-                        .HasForeignKey("JabatanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("JabatanId");
 
                     b.HasOne("FirstResources.Web.Data.Business.JenisKelamin", "JenisKelamin")
                         .WithMany("DataKaryawan")
-                        .HasForeignKey("JenisKelaminId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("JenisKelaminId");
                 });
 #pragma warning restore 612, 618
         }
